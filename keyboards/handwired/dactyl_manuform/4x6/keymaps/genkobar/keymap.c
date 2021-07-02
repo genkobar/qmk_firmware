@@ -29,11 +29,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Base (qwerty)
  * +-----------------------------------------+                             +-----------------------------------------+
- * | ESC  |   q  |   w  |   e  |   r  |   t  |                             |   y  |   u  |   i  |   o  |   p  |      |
+ * | ESC  |   q  |   w  |   e  |   r  |   t  |                             |   y  |   u  |   i  |   o  |   p  |   ð  |
  * |------+------+------+------+------+------|                             |------+------+------+------+------+------|
- * | TAB  |   a  |   s  |   d  |   f  |   g  |                             |   h  |   j  |   k  |   l  |   ;  |      |
+ * | TAB  |   a  |   s  |   d  |   f  |   g  |                             |   h  |   j  |   k  |   l  |   æ  |   ´  |
  * |------+------+------+------+------+------|                             |------+------+------+------+------+------|
- * | SHFT |   z  |   x  |   c  |   v  |   b  |                             |   n  |   m  |   ,  |   .  |   /  |      |
+ * | SHFT |   z  |   x  |   c  |   v  |   b  |                             |   n  |   m  |   ,  |   .  |   þ  |      |
  * +------+------+------+------+-------------+                             +-------------+------+------+------+------+
  * |      |      |  [   |   ]  |                                                         |      |      |      |      |
  * +---------------------------+--------------------+               +--------------------+---------------------------+
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  IS_Q,  IS_W,   IS_E,   IS_R,   IS_T,               IS_Y,   IS_U,   IS_I,   IS_O,   IS_P,   IS_ETH,   \
     KC_TAB,  IS_A,  IS_S,   IS_D,   IS_F,   IS_G,               IS_H,   IS_J,   IS_K,   IS_L,   IS_AE,  IS_ACUT,   \
     KC_LSFT, IS_Z,  IS_X,   IS_C,   IS_V,   IS_B,               IS_N,   IS_M,   IS_COMM,IS_DOT, IS_THRN,IS_ODIA, \
-                    KC_LBRC,KC_RBRC,                                            KC_PLUS,KC_EQL,                    \
+    KC_LCTL, KC_LBRC,KC_RBRC,                                            KC_PLUS,KC_EQL,                    \
                                     RAISE,  KC_SPC,             KC_ENT, LOWER,                                     \
                                     KC_TAB, KC_HOME,            KC_END, KC_DEL,                                    \
                                     KC_BSPC,KC_GRV,             KC_LGUI,KC_LALT                                    \
