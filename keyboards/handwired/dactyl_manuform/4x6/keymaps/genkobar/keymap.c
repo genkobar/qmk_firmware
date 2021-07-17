@@ -2,9 +2,13 @@
 #include "keymap_icelandic.h"
 
 #define _BASE 0
-#define _RAISE 1
-#define _LOWER 2
-#define _ICEL 3
+#define _NUMPAD 1
+#define _SYMBOLS 2
+#define _OSFUNC 3
+
+// Dashes (macOS)
+#define KC_NDSH LALT(KC_MINS)
+#define KC_MDSH S(LALT(KC_MINS))
 
 // Fillers to make layering more clear
 
@@ -15,6 +19,8 @@
 #define ALT_SPC  ALT_T(KC_SPC)
 #define SFT_ENT  SFT_T(KC_ENT)
 
+#define HYPER LCTL(LALT(KC_LGUI))
+
 #define KC_ML KC_MS_LEFT
 #define KC_MR KC_MS_RIGHT
 #define KC_MU KC_MS_UP
@@ -22,9 +28,9 @@
 #define KC_MB1 KC_MS_BTN1
 #define KC_MB2 KC_MS_BTN1
 
-#define RAISE MO(_RAISE)
-#define LOWER MO(_LOWER)
-#define ICEL TO(_ICEL)
+#define NUMPAD TG(_NUMPAD)
+#define SYMBOLS MO(_SYMBOLS)
+#define OSFUNC TG(_OSFUNC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -47,13 +53,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_BASE] = LAYOUT( \
-    KC_ESC,  KC_Q,  KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_MINS,   \
-    KC_TAB,  KC_A,  KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,   \
-    KC_LCTL, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_BSLASH, \
-    KC_LSFT,KC_LALT,KC_LBRC,KC_RBRC,                                             KC_PLUS,KC_EQL,KC_RALT,KC_RSFT,  \
-                                    RAISE,  KC_SPC,             KC_ENT, LOWER,                                     \
-                                    KC_TAB, KC_HOME,            KC_END, KC_DEL,                                    \
-                                    KC_BSPC,KC_GRV,             KC_LGUI,KC_LALT                                    \
+    KC_TAB,  KC_Q,  KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_MINS,   \
+    KC_LCTL, KC_A,  KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,   \
+    KC_LSFT, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_BSLASH, \
+    OSFUNC,KC_LALT,KC_LBRC,KC_RBRC,                                             KC_PLUS,KC_EQL,KC_RALT,KC_RSFT,  \
+                                    SYMBOLS,KC_BSPC,            KC_DEL, NUMPAD,                                     \
+                                    KC_TAB,  KC_SPC,            KC_ENT, KC_LCTL,                                    \
+                                    HYPER, KC_GRV,              KC_LALT, KC_LGUI                                   \
 ),
 
 /* Numberpad
@@ -74,11 +80,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  */
 
-[_LOWER] = LAYOUT(
+[_NUMPAD] = LAYOUT(
     _______,_______,_______,_______,_______,KC_LBRC,            KC_RBRC, KC_P7, KC_P8,  KC_P9,  RESET,  KC_PLUS,   \
     _______,KC_HOME,KC_PGUP,KC_PGDN,KC_END ,KC_LPRN,            KC_RPRN, KC_P4, KC_P5,  KC_P6,  KC_MINS,KC_PIPE,   \
     _______,_______,_______,_______,_______,_______,            _______, KC_P1, KC_P2,  KC_P3,  KC_EQL, KC_UNDS,   \
     _______,_______,_______,KC_PSCR,                                           _______, KC_P0, _______,_______,    \
+                                            _______,_______,    _______,_______,                                   \
+                                            _______,_______,    _______,_______,                                   \
+                                            _______,_______,    _______,_______                                    \
+),
+
+/* Symbols
+ * +-----------------------------------------+                             +-----------------------------------------+
+ * |      |      |      |      |      |   [  |                             |   ]  |   7  |   8  |   9  | Reset|   +  |
+ * |------+------+------+------+------+------|                             |------+------+------+------+------+------|
+ * |      | Home | PGUP | PGDN | END  |   (  |                             |   )  |   4  |   5  |   6  |   -  |   |  |
+ * |------+------+------+------+------+------|                             |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                             |      |   1  |   2  |   3  |   =  |   _  |
+ * +------+------+------+------+-------------+                             +-------------+------+------+------+------+
+ * |      |      |      |      |                                                         |      |   0  |      |      |
+ * +---------------------------+--------------------+               +--------------------+---------------------------+
+ *                             | PrScr|      |      |               |      |      |      |
+ *                             +------+      |      |               |      |      +------+
+ *                             |      +------+------+               +------+------+      |
+ *                             +------+      |      |               |      |      +------+
+ *                                    +-------------+               +-------------+
+ *
+ */
+
+[_SYMBOLS] = LAYOUT(
+    _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F4,                 _______, S(KC_7), S(KC_8),  S(KC_9), _______, _______,   \
+    _______, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8,                 _______, S(KC_4), S(KC_5),  S(KC_6), _______, _______,   \
+    _______, KC_F9,KC_F10,KC_F11,KC_F12,KC_F12,                 _______, S(KC_1), S(KC_2),  S(KC_3), _______, KC_NDSH,   \
+    _______,_______,_______,_______,                                              _______,  S(KC_0), _______, KC_MDSH,   \
                                             _______,_______,    _______,_______,                                   \
                                             _______,_______,    _______,_______,                                   \
                                             _______,_______,    _______,_______                                    \
@@ -102,11 +136,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  */
 
-[_RAISE] = LAYOUT(
-    _______,RESET,  _______,_______,_______,KC_LBRC,            KC_RBRC,_______,KC_NLCK,KC_INS, KC_SLCK,KC_MUTE,   \
-    _______,KC_LEFT,KC_UP  ,KC_DOWN,KC_RGHT,KC_LPRN,            KC_RPRN,KC_MPRV,KC_MPLY,KC_MNXT,_______,KC_VOLU,   \
-    _______,_______,_______,_______,_______,_______,            _______,_______,_______,_______,_______,KC_VOLD,   \
-    _______,_______,_______,_______,                                            KC_EQL, _______,_______,_______,\
+[_OSFUNC] = LAYOUT(
+    KC_PAUS,RESET,  _______,KC_MPRV,KC_MPLY,KC_MNXT,            _______,_______,KC_NLCK,KC_INS, _______,KC_VOLU,   \
+    KC_SLCK,_______,_______,_______,_______,_______,            KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,_______,KC_VOLD,   \
+    _______,_______,_______,_______,_______,_______,            _______,_______,_______,_______,_______,KC_MUTE,   \
+    _______,_______,_______,_______,                                            _______,_______,_______,_______,\
                                             _______,_______,    _______,_______,                                   \
                                             _______,_______,    _______,_______,                                   \
                                             _______,_______,    _______,_______                                    \
