@@ -2,9 +2,10 @@
 #include "keymap_icelandic.h"
 
 #define _BASE 0
-#define _NUMPAD 1
-#define _SYMBOLS 2
-#define _OSFUNC 3
+#define _HALMAK 1
+#define _NUMPAD 2
+#define _SYMBOLS 3
+#define _OSFUNC 4
 
 // Dashes (macOS)
 #define KC_NDSH LALT(KC_MINS)
@@ -31,6 +32,7 @@
 #define NUMPAD TG(_NUMPAD)
 #define SYMBOLS MO(_SYMBOLS)
 #define OSFUNC TG(_OSFUNC)
+#define HALMAK TG(_HALMAK)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -57,9 +59,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL, KC_A,  KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,   \
     KC_LSFT, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_BSLASH, \
     OSFUNC,KC_LALT,KC_LBRC,KC_RBRC,                                             KC_SPC,KC_EQL,KC_MINS,KC_RSFT,  \
-                                    SYMBOLS,KC_BSPC,            KC_DEL, NUMPAD,                                     \
+                                    SYMBOLS,KC_BSPC,            HALMAK, NUMPAD,                                     \
                                     KC_TAB,  KC_SPC,            KC_ENT, KC_LCTL,                                    \
                                     HYPER, KC_GRV,              KC_LALT, KC_LGUI                                   \
+),
+
+[_HALMAK] = LAYOUT( \
+    _______, KC_W,  KC_L,   KC_R,   KC_B,   KC_Z,               KC_SCLN,   KC_Q,   KC_U,   KC_D,   KC_J,   KC_LBRC,   \
+    _______, KC_S,  KC_H,   KC_N,   KC_T,   KC_COMM,               KC_DOT,   KC_A,   KC_E,   KC_O,   KC_I, KC_QUOT,   \
+    _______, KC_F,  KC_M,   KC_V,   KC_C,   KC_SLSH,               KC_G,   KC_P,   KC_X,KC_K, KC_Y,_______, \
+    _______,_______,_______,_______,                                             _______,_______,_______,_______,  \
+                                            _______,_______,    _______,_______,                                   \
+                                            _______,_______,    _______,_______,                                   \
+                                            _______,_______,    _______,_______                                    \
 ),
 
 /* Numberpad
