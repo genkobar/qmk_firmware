@@ -29,10 +29,10 @@
 #define KC_MB1 KC_MS_BTN1
 #define KC_MB2 KC_MS_BTN1
 
-#define NUMPAD TG(_NUMPAD)
-#define SYMBOLS MO(_SYMBOLS)
-#define OSFUNC TG(_OSFUNC)
 #define HALMAK TG(_HALMAK)
+#define NUMPAD MO(_NUMPAD)
+#define SYMBOLS MO(_SYMBOLS)
+#define OSFUNC MO(_OSFUNC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
