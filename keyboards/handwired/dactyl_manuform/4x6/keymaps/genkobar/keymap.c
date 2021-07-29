@@ -54,14 +54,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  */
 
+#define GUI_A MT(MOD_LGUI, KC_A)
+#define ALT_S MT(MOD_LALT, KC_S)
+#define SFT_D MT(MOD_LSFT, KC_D)
+#define CTK_F MT(MOD_LCTL, KC_F)
+
+#define CTL_J MT(MOD_RCTL, KC_J)
+#define SFT_K MT(MOD_RSFT, KC_K)
+#define ALT_L MT(MOD_LALT, KC_L)
+#define GUI_SCLN MT(MOD_RGUI, KC_SCLN)
+
 [_BASE] = LAYOUT( \
     KC_TAB,  KC_Q,  KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC,   \
-    KC_LCTL, KC_A,  KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,   \
+    KC_LCTL, GUI_A,  ALT_S,   SFT_D,   CTK_F,  KC_G,               KC_H,   KC_J,   KC_K,   KC_L, KC_SCLN, KC_QUOT,   \
     KC_LSFT, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_BSLASH, \
     OSFUNC,KC_LALT,KC_LBRC,KC_RBRC,                                             KC_RALT,KC_EQL,KC_MINS,KC_BSPC,  \
                                     NUMPAD, SYMBOLS,            KC_TAB, KC_GRV,                                     \
                                     KC_LALT,  KC_LGUI,            KC_RGUI, KC_RALT,                                    \
-                                    HYPER, KC_ENT,              KC_RCTL, KC_SPC                                   \
+                                    KC_ENT, HYPER,              KC_RCTL, KC_SPC                                   \
 ),
 
 [_HALMAK] = LAYOUT( \
