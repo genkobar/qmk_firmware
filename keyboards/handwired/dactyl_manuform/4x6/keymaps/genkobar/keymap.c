@@ -58,14 +58,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,  KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC,   \
     KC_LCTL, KC_A,  KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,   \
     KC_LSFT, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_BSLASH, \
-    OSFUNC,KC_LALT,KC_LBRC,KC_RBRC,                                             KC_SPC,KC_EQL,KC_MINS,KC_RSFT,  \
-                                    SYMBOLS,KC_BSPC,            HALMAK, NUMPAD,                                     \
-                                    KC_TAB,  KC_SPC,            KC_ENT, KC_LCTL,                                    \
-                                    HYPER, KC_GRV,              KC_LALT, KC_LGUI                                   \
+    OSFUNC,KC_LALT,KC_LBRC,KC_RBRC,                                             KC_RALT,KC_EQL,KC_MINS,KC_BSPC,  \
+                                    NUMPAD, SYMBOLS,            KC_TAB, KC_GRV,                                     \
+                                    KC_LALT,  KC_LGUI,            KC_RGUI, KC_RALT,                                    \
+                                    HYPER, KC_ENT,              KC_RCTL, KC_SPC                                   \
 ),
 
 [_HALMAK] = LAYOUT( \
-    _______, KC_W,  KC_L,   KC_R,   KC_B,   KC_Z,               KC_SCLN,   KC_Q,   KC_U,   KC_D,   KC_J,   KC_LBRC,   \
+    _______, KC_W,  KC_L,   KC_R,   KC_B,   KC_Z,                  KC_SCLN,   KC_Q,   KC_U,   KC_D,   KC_J,   KC_LBRC,   \
     _______, KC_S,  KC_H,   KC_N,   KC_T,   KC_COMM,               KC_DOT,   KC_A,   KC_E,   KC_O,   KC_I, KC_QUOT,   \
     _______, KC_F,  KC_M,   KC_V,   KC_C,   KC_SLSH,               KC_G,   KC_P,   KC_X,KC_K, KC_Y,_______, \
     _______,_______,_______,_______,                                             _______,_______,_______,_______,  \
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,_______,_______,_______,_______,KC_LBRC,            KC_RBRC, KC_P7, KC_P8,  KC_P9,  RESET,  KC_PLUS,   \
     _______,KC_HOME,KC_PGUP,KC_PGDN,KC_END ,KC_LPRN,            KC_RPRN, KC_P4, KC_P5,  KC_P6,  KC_MINS,KC_PIPE,   \
     _______,_______,_______,_______,_______,_______,            _______, KC_P1, KC_P2,  KC_P3,  KC_EQL, KC_UNDS,   \
-    _______,_______,_______,KC_PSCR,                                           _______, KC_P0, _______,_______,    \
+    _______,_______,_______,KC_PSCR,                                            KC_P0,_______,_______,_______,    \
                                             _______,_______,    _______,_______,                                   \
                                             _______,_______,    _______,_______,                                   \
                                             _______,_______,    _______,_______                                    \
