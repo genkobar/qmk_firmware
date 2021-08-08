@@ -19,7 +19,7 @@
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define PRODUCT_ID      0x3436
+#define PRODUCT_ID      0x3437
 #define DEVICE_VER      0x0001
 
 /* key matrix size */
