@@ -4,6 +4,8 @@
     #include "4x5.h"
 #elif KEYBOARD_handwired_dactyl_manuform_4x6
     #include "4x6.h"
+#elif KEYBOARD_handwired_dactyl_manuform_4x6_genkactyl
+    #include "4x6_genkactyl.h"
 #elif KEYBOARD_handwired_dactyl_manuform_5x6
     #include "5x6.h"
 #elif KEYBOARD_handwired_dactyl_manuform_5x6_5
