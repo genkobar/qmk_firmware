@@ -177,15 +177,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_OSFUNC] = LAYOUT(
-    KC_PAUS,RESET,  _______,KC_MPRV,KC_MPLY,KC_MNXT,            _______,_______,KC_NLCK,KC_INS, _______,KC_VOLU,   \
+    KC_PAUS,RESET,  _______,KC_MPRV,KC_MPLY,KC_MNXT,            FF_LEFT, FF_RIGHT,KC_NLCK,KC_INS, _______,KC_VOLU,   \
     KC_SLCK,_______,_______,_______,_______,_______,            KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,_______,KC_VOLD,   \
-    _______,_______,_______,_______,_______,_______,            _______,_______,_______,_______,_______,KC_MUTE,   \
+    _______,_______,_______,_______,_______,_______,            KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,_______,KC_MUTE,   \
     _______,_______,_______,_______,                                            _______,_______,_______,_______,\
-                                    _______,_______,_______,    _______,_______,_______,                           \
-                                    _______,_______,_______,    _______,_______,_______                           \
+                                    _______,KC_BTN1,KC_BTN3,    KC_BTN4,KC_BTN2,_______,                           \
+                                    KC_ACL0,KC_ACL1,KC_ACL2,    _______,_______,_______                           \
 )
 };
-
 
 void persistent_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
