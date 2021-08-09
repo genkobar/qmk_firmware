@@ -51,54 +51,51 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+// Control when held, Escape when tapped
+#define LCTL_ESC MT(MOD_LCTL, KC_ESC)
+#define RCTL_ESC MT(MOD_LCTL, KC_ESC)
+
+// Firefox tab navigation
+#define FF_LEFT LGUI(LALT(KC_LEFT))
+#define FF_RIGHT LGUI(LALT(KC_RIGHT))
+
 /* Base (qwerty)
+ * Notes on Icelandic typing:
+ * Accented characters are typed with the apostrophe on from the US-international input method.
+ * When typed before vowels, it will apply an accent to that vowel; otherwise it will type an apostrophe.
+ * It will type " when shifted, but this also applies umlauts to viable characters, creating a way for us
+ * to type ö without using a button on the keyboard.
+ * Finally, since this 4x6 has some extra buttons in the 4th row, I moved æ and þ down there. It will take some
+ * getting used to, but I think this will be better than continuing to switch between US and Icelandic input methods.
  * +-----------------------------------------+                             +-----------------------------------------+
- * | ESC  |   q  |   w  |   e  |   r  |   t  |                             |   y  |   u  |   i  |   o  |   p  |   [  |
+ * | TAB  |   q  |   w  |   e  |   r  |   t  |                             |   y  |   u  |   i  |   o  |   p  |   ð  |
  * |------+------+------+------+------+------|                             |------+------+------+------+------+------|
- * | TAB  |   a  |   s  |   d  |   f  |   g  |                             |   h  |   j  |   k  |   l  |   ;  |   '  |
+ * |CTLESC|   a  |   s  |   d  |   f  |   g  |                             |   h  |   j  |   k  |   l  |   ;  |   '  |
  * |------+------+------+------+------+------|                             |------+------+------+------+------+------|
  * | LSHFT|   z  |   x  |   c  |   v  |   b  |                             |   n  |   m  |   ,  |   .  |   /  |   \  |
  * +------+------+------+------+-------------+                             +-------------+------+------+------+------+
- * | OS   | LALT |  [   |   ]  |                                                         |   +  |   =  |   -  | RSHFT|
+ * | OS   | HYPER |  [   |   ]  |                                                         | HALM |   æ  |   þ  | BKSP |
  * +---------------------------+--------------------+               +--------------------+---------------------------+
  *                             |      |      |      |               |      |      |      |
  *                             +------+      |      |               |      |      +------+
  *                             |      +------+------+               +------+------+      |
  *                             +------+      |      |               |      |      +------+
  *                                    +-------------+               +-------------+
- *
  */
 
-// // Home row mods
-// Turned them all off because I activated them while typing
-// #define GUI_A MT(MOD_LGUI, KC_A)
-// #define ALT_S MT(MOD_LALT, KC_S)
-// #define SFT_D MT(MOD_LSFT, KC_D)
-// #define CTK_F MT(MOD_LCTL, KC_F)
-
-// // !! I disabled them on the right side because I need to use j/k for vim-like up/down
-// #define CTL_J MT(MOD_RCTL, KC_J)
-// #define SFT_K MT(MOD_RSFT, KC_K)
-// #define ALT_L MT(MOD_LALT, KC_L)
-// #define GUI_SCLN MT(MOD_RGUI, KC_SCLN)
-
-// Control when held, Escape when tapped
-#define LCTL_ESC MT(MOD_LCTL, KC_ESC)
-#define RCTL_ESC MT(MOD_LCTL, KC_ESC)
-
 [_BASE] = LAYOUT( \
-    KC_TAB,  KC_Q,  KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC,   \
-    LCTL_ESC, KC_A,  KC_S,   KC_D,   KC_F,  KC_G,               KC_H,   KC_J,   KC_K,   KC_L, KC_SCLN, KC_QUOT,   \
-    KC_LSFT, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_BSLASH, \
-    OSFUNC,HYPER,KC_LBRC,KC_RBRC,                                             KC_RALT,KC_EQL,KC_MINS,KC_BSPC,  \
-                            KC_LGUI, KC_BSPC, KC_ENT,       KC_TAB, KC_SPC, RCTL_ESC,                           \
-                            KC_LALT, LCTL_ESC, NUMPAD,      KC_GRV, KC_RALT, KC_RSFT                    \
+    KC_TAB,   KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,    KC_LBRC,   \
+    LCTL_ESC, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN, KC_QUOT,   \
+    KC_LSFT,  KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH, KC_BSLASH, \
+    OSFUNC,  HYPER, KC_LBRC,KC_RBRC,                                              HALMAK, KC_EQL, KC_MINS, KC_BSPC,   \
+                            KC_LGUI, KC_BSPC, KC_ENT,       KC_TAB, KC_SPC, RCTL_ESC,                                 \
+                            KC_LALT, LCTL_ESC, NUMPAD,      KC_GRV, KC_RALT, KC_RSFT                                  \
 ),
 
 [_HALMAK] = LAYOUT( \
-    _______, KC_W,  KC_L,   KC_R,   KC_B,   KC_Z,                  KC_SCLN,   KC_Q,   KC_U,   KC_D,   KC_J,   KC_LBRC,   \
-    _______, KC_S,  KC_H,   KC_N,   KC_T,   KC_COMM,               KC_DOT,   KC_A,   KC_E,   KC_O,   KC_I, KC_QUOT,   \
-    _______, KC_F,  KC_M,   KC_V,   KC_C,   KC_SLSH,               KC_G,   KC_P,   KC_X,KC_K, KC_Y,_______, \
+    _______, KC_W,  KC_L,   KC_R,   KC_B,   KC_Z,                  KC_SCLN,   KC_Q,   KC_U,   KC_D,   KC_J,  _______,   \
+    _______, KC_S,  KC_H,   KC_N,   KC_T,   KC_COMM,               KC_DOT,   KC_A,   KC_E,   KC_O,   KC_I, _______,   \
+    _______, KC_F,  KC_M,   KC_V,   KC_C,   KC_SLSH,               KC_G,   KC_P,    KC_X,   KC_K,   KC_Y,_______, \
     _______,_______,_______,_______,                                             _______,_______,_______,_______,  \
                                     _______,_______,_______,    _______,_______,_______,                           \
                                     _______,_______,_______,    _______,_______,_______                           \
