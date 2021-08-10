@@ -49,8 +49,6 @@
 #define SYMBOLS MO(_SYMBOLS)
 #define OSFUNC MO(_OSFUNC)
 
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
 // Control when held, Escape when tapped
 #define LCTL_ESC MT(MOD_LCTL, KC_ESC)
 #define RCTL_ESC MT(MOD_LCTL, KC_ESC)
@@ -58,6 +56,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Firefox tab navigation
 #define FF_LEFT LGUI(LALT(KC_LEFT))
 #define FF_RIGHT LGUI(LALT(KC_RIGHT))
+
+enum unicode_names {
+    THORN,
+    AE,
+    ETH
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [THORN]  = 0x00FE,  // þ
+    [AE] = 0x00E6,  // æ
+    [ETH]  = 0x00F0, // ð
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Base (qwerty)
  * Notes on Icelandic typing:
@@ -84,10 +96,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_BASE] = LAYOUT( \
-    KC_TAB,   US_Q,   US_W,   US_E,   US_R,   US_T,               US_Y,   US_U,   US_I,   US_O,   US_P,    UC(0x00F0),   \
+    KC_TAB,   US_Q,   US_W,   US_E,   US_R,   US_T,               US_Y,   US_U,   US_I,   US_O,   US_P,    X(ETH),   \
     LCTL_ESC, US_A,   US_S,   US_D,   US_F,   US_G,               US_H,   US_J,   US_K,   US_L,   US_SCLN, US_ACUT,   \
     KC_LSFT,  US_Z,   US_X,   US_C,   US_V,   US_B,               US_N,   US_M,   US_COMM,US_DOT, US_SLSH, US_BSLS, \
-    OSFUNC,  HYPER, US_LBRC,US_RBRC,                                              UC(0x00E6), UC(0x00FE), US_EQL, US_MINS,   \
+    OSFUNC,  HYPER, US_LBRC,US_RBRC,                                              X(AE), X(THORN), US_EQL, US_MINS,   \
                             KC_LGUI, KC_BSPC, KC_ENT,       KC_TAB, KC_SPC, RCTL_ESC,                                 \
                             KC_LALT, LCTL_ESC, NUMPAD,      US_DGRV, KC_RALT, KC_RSFT                                  \
 ),
