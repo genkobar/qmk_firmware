@@ -14,13 +14,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-#include "keymap_icelandic.h"
 
 #define _BASE 0
 #define _HALMAK 1
 #define _NUMPAD 2
 #define _SYMBOLS 3
 #define _OSFUNC 4
+
+#define HALMAK TG(_HALMAK)
+#define NUMPAD MO(_NUMPAD)
+#define SYMBOLS MO(_SYMBOLS)
+#define OSFUNC MO(_OSFUNC)
 
 // Dashes (macOS)
 #define KC_NDSH LALT(KC_MINS)
@@ -42,14 +46,9 @@
 #define KC_MU KC_MS_UP
 #define KC_MD KC_MS_DOWN
 #define KC_MB1 KC_MS_BTN1
-#define KC_MB2 KC_MS_BTN1
-
-#define HALMAK TG(_HALMAK)
-#define NUMPAD MO(_NUMPAD)
-#define SYMBOLS MO(_SYMBOLS)
-#define OSFUNC MO(_OSFUNC)
-
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+#define KC_MB2 KC_MS_BTN2
+#define KC_MB3 KC_MS_BTN3
+#define KC_MB4 KC_MS_BTN4
 
 // Control when held, Escape when tapped
 #define LCTL_ESC MT(MOD_LCTL, KC_ESC)
@@ -58,6 +57,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Firefox tab navigation
 #define FF_LEFT LGUI(LALT(KC_LEFT))
 #define FF_RIGHT LGUI(LALT(KC_RIGHT))
+
+// Define a type for as many tap dance states as you need
+typedef enum {
+    TD_NONE,
+    TD_UNKNOWN,
+    TD_SINGLE_TAP,
+    TD_SINGLE_HOLD,
+    TD_DOUBLE_TAP_HOLD
+} td_state_t;
+
+typedef struct {
+    bool is_press_action;
+    td_state_t state;
+} td_tap_t;
+
+enum {
+    NUMSYM, // Our custom tap dance key; add any other tap dance keys to this enum
+};
+
+// Declare the functions to be used with your tap dance key(s)
+
+// Function associated with all tap dances
+td_state_t cur_dance(qk_tap_dance_state_t *state);
+
+// Functions associated with individual tap dances
+void ql_finished(qk_tap_dance_state_t *state, void *user_data);
+void ql_reset(qk_tap_dance_state_t *state, void *user_data);
+
+
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Base (qwerty)
  * Notes on Icelandic typing:
@@ -74,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                             |------+------+------+------+------+------|
  * | LSHFT|   z  |   x  |   c  |   v  |   b  |                             |   n  |   m  |   ,  |   .  |   /  |   \  |
  * +------+------+------+------+-------------+                             +-------------+------+------+------+------+
- * | OS   | HYPER |  [   |   ]  |                                                         | HALM |   æ  |   þ  | BKSP |
+ * | OS   | HYPER |  [   |   ]  |                                                        |      |   æ  |   þ  | BKSP |
  * +---------------------------+--------------------+               +--------------------+---------------------------+
  *                             |      |      |      |               |      |      |      |
  *                             +------+      |      |               |      |      +------+
@@ -87,9 +117,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,   KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,    KC_LBRC,   \
     LCTL_ESC, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN, KC_QUOT,   \
     KC_LSFT,  KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH, KC_BSLASH, \
-    OSFUNC,  HYPER, KC_LBRC,KC_RBRC,                                              HALMAK, KC_EQL, KC_MINS, KC_BSPC,   \
-                            KC_LGUI, KC_BSPC, KC_ENT,       KC_TAB, KC_SPC, RCTL_ESC,                                 \
-                            KC_LALT, LCTL_ESC, NUMPAD,      KC_GRV, KC_RALT, KC_RSFT                                  \
+    OSFUNC,  HYPER, KC_LBRC,KC_RBRC,                                              NUMPAD, KC_EQL, KC_MINS, KC_BSPC,   \
+                            KC_LGUI, KC_SPC, KC_BSPC,       KC_TAB, KC_ENT, RCTL_ESC,                                 \
+                            KC_LALT, LCTL_ESC, TD(NUMSYM),      KC_GRV, KC_RALT, KC_RSFT                                  \
 ),
 
 [_HALMAK] = LAYOUT( \
@@ -122,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NUMPAD] = LAYOUT(
     _______,_______,_______,_______,_______,KC_LBRC,            KC_RBRC, KC_P7, KC_P8,  KC_P9,  RESET,  KC_PLUS,   \
     _______,KC_HOME,KC_PGUP,KC_PGDN,KC_END ,KC_LPRN,            KC_RPRN, KC_P4, KC_P5,  KC_P6,  KC_MINS,KC_PIPE,   \
-    SYMBOLS,_______,_______,_______,_______,_______,            _______, KC_P1, KC_P2,  KC_P3,  KC_EQL, KC_UNDS,   \
+    _______,_______,_______,_______,_______,_______,            _______, KC_P1, KC_P2,  KC_P3,  KC_EQL, KC_UNDS,   \
     _______,_______,_______,KC_PSCR,                                            KC_P0,_______,_______,_______,     \
                                     _______,_______,SYMBOLS,    _______,_______,_______,                           \
                                     _______,_______,_______,    _______,_______,_______                            \
@@ -176,9 +206,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_OSFUNC] = LAYOUT(
     KC_PAUS,RESET,  _______,KC_MPRV,KC_MPLY,KC_MNXT,            FF_LEFT, FF_RIGHT,KC_NLCK,KC_INS, _______,KC_VOLU,   \
     KC_SLCK,_______,_______,_______,_______,_______,            KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,_______,KC_VOLD,   \
-    _______,_______,_______,_______,_______,_______,            KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,_______,KC_MUTE,   \
+    _______,_______,_______,_______,_______,_______,            KC_ML,KC_MD,KC_MU,KC_MR,_______,KC_MUTE,   \
     _______,_______,_______,_______,                                            _______,_______,_______,_______,\
-                                    _______,KC_BTN1,KC_BTN3,    KC_BTN4,KC_BTN2,_______,                           \
+                                    _______,KC_MB1,KC_MB3,    KC_MB4,KC_MB2,_______,                           \
                                     KC_ACL0,KC_ACL1,KC_ACL2,    _______,_______,_______                           \
 )
 };
@@ -187,3 +217,51 @@ void persistent_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
   default_layer_set(default_layer);
 }
+
+// Determine the current tap dance state
+td_state_t cur_dance(qk_tap_dance_state_t *state) {
+    if (state->count == 1) {
+        if (!state->pressed) return TD_SINGLE_TAP;
+        else return TD_SINGLE_HOLD;
+    } else if (state->count == 2) return TD_DOUBLE_TAP_HOLD;
+    else return TD_UNKNOWN;
+}
+
+// Initialize tap structure associated with example tap dance key
+static td_tap_t ql_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+// Functions that control what our tap dance key does
+void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
+    ql_tap_state.state = cur_dance(state);
+    switch (ql_tap_state.state) {
+        case TD_SINGLE_TAP:
+            tap_code(KC_ENT);
+            break;
+        case TD_SINGLE_HOLD:
+            layer_on(_NUMPAD);
+            break;
+        case TD_DOUBLE_TAP_HOLD:
+            layer_on(_SYMBOLS);
+            break;
+        default:
+            break;
+    }
+}
+
+void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
+    // If the key was held down and now is released then switch off the layer
+    if (ql_tap_state.state == TD_SINGLE_HOLD) {
+        layer_off(_NUMPAD);
+    } else if (ql_tap_state.state == TD_DOUBLE_TAP_HOLD) {
+        layer_off(_SYMBOLS);
+    }
+    ql_tap_state.state = TD_NONE;
+}
+
+// Associate our tap dance key with its functionality
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [NUMSYM] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, ql_finished, ql_reset, 275)
+};

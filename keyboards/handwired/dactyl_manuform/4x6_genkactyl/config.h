@@ -37,3 +37,5 @@
 // WS2812 RGB LED strip input and number of LEDs
 #define RGB_DI_PIN D3
 #define RGBLED_NUM 12
+
+#define TAPPING_TERM 175
