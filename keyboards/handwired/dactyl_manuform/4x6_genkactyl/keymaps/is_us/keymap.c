@@ -14,14 +14,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "keymap_icelandic.h"
 
 #define _BASE 0
-#define _HALMAK 1
+#define _SHIFT 1
 #define _NUMPAD 2
 #define _SYMBOLS 3
 #define _OSFUNC 4
+#define _HALMAK 5
 
-#define HALMAK TG(_HALMAK)
+// #define HALMAK TG(_HALMAK)
 #define NUMPAD MO(_NUMPAD)
 #define SYMBOLS MO(_SYMBOLS)
 #define OSFUNC MO(_OSFUNC)
@@ -85,6 +87,8 @@ td_state_t cur_dance(qk_tap_dance_state_t *state);
 void ql_finished(qk_tap_dance_state_t *state, void *user_data);
 void ql_reset(qk_tap_dance_state_t *state, void *user_data);
 
+#define CST_LSFT LM(_SHIFT, MOD_LSFT)
+#define CST_RSFT LM(_SHIFT, MOD_RSFT)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -114,12 +118,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_BASE] = LAYOUT( \
-    KC_TAB,   KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,    KC_LBRC,   \
-    LCTL_ESC, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN, KC_QUOT,   \
-    KC_LSFT,  KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH, KC_BSLASH, \
-    OSFUNC,  HYPER, KC_LBRC,KC_RBRC,                                              NUMPAD, KC_EQL, KC_MINS, KC_BSPC,   \
+    KC_TAB,   KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,    IS_ETH,   \
+    LCTL_ESC, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   IS_SCLN, IS_ACUT,   \
+    CST_LSFT,  KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   IS_COMM,IS_DOT, IS_SLSH, IS_BSLS, \
+    OSFUNC,  HYPER, IS_LBRC,IS_RBRC,                                              IS_AE, IS_EQL, IS_MINS, IS_THRN,   \
                             KC_LGUI, KC_SPC, KC_BSPC,       KC_TAB, KC_ENT, RCTL_ESC,                                 \
-                            KC_LALT, LCTL_ESC, TD(NUMSYM),      KC_GRV, KC_RALT, KC_RSFT                                  \
+                            KC_LALT, LCTL_ESC, TD(NUMSYM),      IS_GRV, KC_RALT, CST_RSFT                                  \
+),
+
+[_SHIFT] = LAYOUT( \
+    _______, S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T),               S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),  S(IS_ETH), \
+    _______, S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G),               S(KC_H), S(KC_J), S(KC_K), S(KC_L), IS_COLN, IS_DQUO, \
+    _______,  S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B),               S(KC_N), S(KC_M), IS_LABK, IS_RABK, IS_QUES, IS_PIPE, \
+    _______,  _______, IS_LCBR,IS_RCBR,                                              S(IS_AE), IS_PLUS, IS_UNDS, S(IS_THRN), \
+                            _______, _______, KC_DEL,               _______, _______, _______,                                 \
+                            _______, _______, _______,              IS_TILD, _______, _______                                  \
 ),
 
 [_HALMAK] = LAYOUT( \
@@ -150,9 +163,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_NUMPAD] = LAYOUT(
-    _______,_______,_______,_______,_______,KC_LBRC,            KC_RBRC, KC_P7, KC_P8,  KC_P9,  RESET,  KC_PLUS,   \
-    _______,KC_HOME,KC_PGUP,KC_PGDN,KC_END ,KC_LPRN,            KC_RPRN, KC_P4, KC_P5,  KC_P6,  KC_MINS,KC_PIPE,   \
-    _______,_______,_______,_______,_______,_______,            _______, KC_P1, KC_P2,  KC_P3,  KC_EQL, KC_UNDS,   \
+    _______,_______,_______,_______,_______,IS_LBRC,            IS_RBRC, KC_P7, KC_P8,  KC_P9,  RESET,  IS_PLUS,   \
+    _______,KC_HOME,KC_PGUP,KC_PGDN,KC_END ,IS_LPRN,            IS_RPRN, KC_P4, KC_P5,  KC_P6,  IS_MINS,IS_QUOT,   \
+    _______,_______,_______,_______,_______,_______,            _______, KC_P1, KC_P2,  KC_P3,  IS_EQL, IS_UNDS,   \
     _______,_______,_______,KC_PSCR,                                            KC_P0,_______,_______,_______,     \
                                     _______,_______,SYMBOLS,    _______,_______,_______,                           \
                                     _______,_______,_______,    _______,_______,_______                            \
@@ -177,10 +190,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_SYMBOLS] = LAYOUT(
-    _______, KC_F1, KC_F2, KC_F3, KC_F4,_______,                _______, S(KC_7), S(KC_8),  S(KC_9), _______, _______,   \
-    _______, KC_F5, KC_F6, KC_F7, KC_F8,_______,                _______, S(KC_4), S(KC_5),  S(KC_6), _______, _______,   \
-    _______, KC_F9,KC_F10,KC_F11,KC_F12,_______,                _______, S(KC_1), S(KC_2),  S(KC_3), _______, KC_NDSH,   \
-    _______,_______,_______,_______,                                              S(KC_0),  _______, _______, KC_MDSH,   \
+    _______, KC_F1, KC_F2, KC_F3, KC_F4,_______,                _______, IS_AMPR, IS_ASTR, IS_LPRN,  _______, _______,   \
+    _______, KC_F5, KC_F6, KC_F7, KC_F8,_______,                _______, IS_DLR, IS_PERC, IS_CIRC,  _______, _______,   \
+    _______, KC_F9,KC_F10,KC_F11,KC_F12,_______,                _______, IS_EXLM, IS_AT, IS_HASH,  _______, KC_NDSH,   \
+    _______,_______,_______,_______,                                              IS_RPRN, _______, _______,  KC_MDSH,   \
                                     _______,_______,_______,    _______,_______,_______,                           \
                                     _______,_______,_______,    _______,_______,_______                          \
 ),
