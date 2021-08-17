@@ -90,7 +90,6 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data);
 #define CST_LSFT LM(_SHIFT, MOD_LSFT)
 #define CST_RSFT LM(_SHIFT, MOD_RSFT)
 
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Base (qwerty)
@@ -118,21 +117,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_BASE] = LAYOUT( \
-    KC_TAB,   KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,    IS_ETH,   \
-    LCTL_ESC, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   IS_SCLN, IS_ACUT,   \
-    CST_LSFT,  KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   IS_COMM,IS_DOT, IS_SLSH, IS_BSLS, \
-    OSFUNC,  HYPER, IS_LBRC,IS_RBRC,                                              IS_AE, IS_EQL, IS_MINS, IS_THRN,   \
-                            KC_LGUI, KC_SPC, KC_BSPC,       KC_TAB, KC_ENT, RCTL_ESC,                                 \
-                            KC_LALT, LCTL_ESC, TD(NUMSYM),      IS_GRV, KC_RALT, CST_RSFT                                  \
+    HYPER,    KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,    IS_ETH,   \
+    LCTL_ESC, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                KC_H,   KC_J,   KC_K,   KC_L,   IS_SCLN, IS_ACUT,   \
+    CST_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                KC_N,   KC_M,  IS_COMM,IS_DOT, IS_SLSH, IS_BSLS, \
+    OSFUNC,   IS_AE, IS_LBRC, IS_RBRC,                                              IS_ODIA, IS_EQL, IS_MINS, IS_THRN,   \
+                            KC_LGUI, KC_SPC, TD(NUMSYM),   KC_TAB, KC_ENT, LCTL_ESC,                                 \
+                            KC_LALT, KC_BSPC, LCTL_ESC,    IS_GRV, KC_RALT, CST_RSFT                                  \
 ),
 
 [_SHIFT] = LAYOUT( \
     _______, S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T),               S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),  S(IS_ETH), \
     _______, S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G),               S(KC_H), S(KC_J), S(KC_K), S(KC_L), IS_COLN, IS_DQUO, \
     _______,  S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B),               S(KC_N), S(KC_M), IS_LABK, IS_RABK, IS_QUES, IS_PIPE, \
-    _______,  _______, IS_LCBR,IS_RCBR,                                              S(IS_AE), IS_PLUS, IS_UNDS, S(IS_THRN), \
-                            _______, _______, KC_DEL,               _______, _______, _______,                                 \
-                            _______, _______, _______,              IS_TILD, _______, _______                                  \
+    _______,  S(IS_AE), IS_LCBR,IS_RCBR,                                              S(IS_ODIA), IS_PLUS, IS_UNDS, S(IS_THRN), \
+                            _______, _______, _______,               _______, _______, _______,                                 \
+                            _______, KC_DEL, _______,                IS_TILD, _______, _______                                  \
 ),
 
 [_HALMAK] = LAYOUT( \
