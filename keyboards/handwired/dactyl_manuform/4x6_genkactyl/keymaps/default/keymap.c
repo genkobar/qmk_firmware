@@ -73,8 +73,10 @@ typedef struct {
 } td_tap_t;
 
 enum {
-    NUMSYM, // Our custom tap dance key; add any other tap dance keys to this enum
+    NUMSYMTAP, // Our custom tap dance key; add any other tap dance keys to this enum
 };
+
+#define NUMSYM TD(NUMSYMTAP)
 
 // Declare the functions to be used with your tap dance key(s)
 
@@ -118,8 +120,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LCTL_ESC, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN, KC_QUOT,   \
     KC_LSFT,  KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH, KC_BSLASH, \
     OSFUNC,  HYPER, KC_LBRC,KC_RBRC,                                              NUMPAD, KC_EQL, KC_MINS, KC_BSPC,   \
-                            KC_LGUI, KC_SPC, KC_BSPC,       KC_TAB, KC_ENT, RCTL_ESC,                                 \
-                            KC_LALT, LCTL_ESC, TD(NUMSYM),      KC_GRV, KC_RALT, KC_RSFT                                  \
+                            KC_LGUI, KC_SPC, NUMSYM,        KC_TAB, KC_ENT, LCTL_ESC,                                 \
+                            KC_LALT, KC_BSPC, LCTL_ESC,     KC_GRV, KC_RALT, KC_RSFT                                  \
 ),
 
 [_HALMAK] = LAYOUT( \
@@ -177,8 +179,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_SYMBOLS] = LAYOUT(
-    _______, KC_F1, KC_F2, KC_F3, KC_F4,_______,                _______, S(KC_7), S(KC_8),  S(KC_9), _______, _______,   \
-    _______, KC_F5, KC_F6, KC_F7, KC_F8,_______,                _______, S(KC_4), S(KC_5),  S(KC_6), _______, _______,   \
+    _______, KC_F1, KC_F2, KC_F3, KC_F4,KC_LBRC,                KC_RBRC, S(KC_7), S(KC_8),  S(KC_9), _______, _______,   \
+    _______, KC_F5, KC_F6, KC_F7, KC_F8,KC_LPRN,                KC_RPRN, S(KC_4), S(KC_5),  S(KC_6), _______, _______,   \
     _______, KC_F9,KC_F10,KC_F11,KC_F12,_______,                _______, S(KC_1), S(KC_2),  S(KC_3), _______, KC_NDSH,   \
     _______,_______,_______,_______,                                              S(KC_0),  _______, _______, KC_MDSH,   \
                                     _______,_______,_______,    _______,_______,_______,                           \
@@ -204,12 +206,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_OSFUNC] = LAYOUT(
-    KC_PAUS,RESET,  _______,KC_MPRV,KC_MPLY,KC_MNXT,            FF_LEFT, FF_RIGHT,KC_NLCK,KC_INS, _______,KC_VOLU,   \
-    KC_SLCK,_______,_______,_______,_______,_______,            KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,_______,KC_VOLD,   \
-    _______,_______,_______,_______,_______,_______,            KC_ML,KC_MD,KC_MU,KC_MR,_______,KC_MUTE,   \
-    _______,_______,_______,_______,                                            _______,_______,_______,_______,\
-                                    _______,KC_MB1,KC_MB3,    KC_MB4,KC_MB2,_______,                           \
-                                    KC_ACL0,KC_ACL1,KC_ACL2,    _______,_______,_______                           \
+    KC_PAUS,RESET,  _______,KC_MPRV,KC_MPLY,KC_MNXT,            FF_LEFT, FF_RIGHT, KC_NLCK,KC_INS, _______,KC_VOLU,   \
+    KC_SLCK,_______,_______,_______,_______,_______,            KC_LEFT, KC_DOWN,  KC_UP,  KC_RGHT,_______,KC_VOLD,   \
+    _______,_______,_______,_______,_______,_______,            KC_ML,   KC_MD,    KC_MU,  KC_MR, _______,KC_MUTE,   \
+    _______,_______,_______,_______,                                              _______,_______,_______,HALMAK,\
+                            _______,KC_MB1,KC_MB3,          KC_MB4,KC_MB2,_______,                           \
+                            KC_ACL0,KC_ACL1,KC_ACL2,        _______,_______,_______                           \
 )
 };
 
@@ -263,5 +265,5 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 // Associate our tap dance key with its functionality
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [NUMSYM] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, ql_finished, ql_reset, 275)
+    [NUMSYMTAP] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, ql_finished, ql_reset, 275)
 };
