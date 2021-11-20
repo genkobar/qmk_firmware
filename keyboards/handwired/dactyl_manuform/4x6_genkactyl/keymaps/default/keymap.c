@@ -23,17 +23,9 @@ enum my_layers {
 };
 
 #define HALMAK TG(_HALMAK)
-#define SYMBOLS MO(_FKEXTRA)
 #define OSFUNC MO(_OSFUNC)
 
-// Dashes (macOS)
-#define KC_NDSH LALT(KC_MINS)
-#define KC_MDSH S(LALT(KC_MINS))
-
-// Fillers to make layering more clear
-
-#define HYPER LCTL(LALT(KC_LGUI))
-
+// Mouse control short names
 #define KC_ML KC_MS_LEFT
 #define KC_MR KC_MS_RIGHT
 #define KC_MU KC_MS_UP
@@ -46,6 +38,8 @@ enum my_layers {
 // Control when held, Escape when tapped
 #define LCTL_ESC MT(MOD_LCTL, KC_ESC)
 #define RCTL_ESC MT(MOD_RCTL, KC_ESC)
+
+#define HYPER LCTL(LALT(KC_LGUI))
 
 // Firefox tab navigation
 #define FF_LEFT LGUI(LALT(KC_LEFT))
