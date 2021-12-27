@@ -1,4 +1,4 @@
-# 4x6_genkactyl
+# 4x6 Genkactyl
 
 ![4x6_genkactyl](imgur.com image replace me!)
 
@@ -7,7 +7,7 @@ Thumb cluster designed by Carbonfet.
 
 * Keyboard Maintainer: [Valdimar Björn Ásgeirsson](https://github.com/genkobar)
 * Hardware Supported: Handwired, Pro Micro and similar
-* Hardware Availability: Get switches and key caps from your favorite suppliers
+* Hardware Availability: Anything that works with a pro micro
 
 Make example for this keyboard (after setting up your build environment):
 
@@ -21,7 +21,7 @@ See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_to
 
 ## Design
 
-The main concerns were:
+The main concerns while designing this keyboard were:
 
 - having enough keys for the Icelandic input layout, which has dedicated keys for the letters `ð`, `þ`, `æ`, `ö` and the acute one-shot modifier `´`
 - removing the number row to minimize the footprint of the keyboard
@@ -29,3 +29,4 @@ The main concerns were:
 ## 3D Printing
 
 The code for generating the model to print this keyboard with a 3D printer can be found at https://github.com/genkobar/dactyl-manuform.
+I printed mine on a Prusa MK3S+ in Prusament "Galaxy Black" filament, with a layer height of 0.2 mm.
