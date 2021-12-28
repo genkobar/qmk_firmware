@@ -45,7 +45,8 @@ enum my_layers {
 // =================================
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
-/* Base (qwerty)
+
+/* Base (QWERTY)
  *                   ,-------------------------------. ,-------------------------------.
  * ,-----------------|   W   |   E   |   R   |   T   | |   Y   |   U   |   I   |   O   |-----------------.
  * |   TAB   |   Q   |-------+-------+-------+-------| |-------+-------+-------+-------|   P   |  LBRC   |
@@ -70,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         CALT,    LOWER,  KC_LALT,         KC_RALT, UPPER, CT_ESC                             \
 ),
 
-/* HALMAK
+/* HALMAK (toggle via UPPER)
  *                   ,-------------------------------. ,-------------------------------.
  * ,-----------------|   L   |   R   |   B   |   Z   | | SCLN  |   Q   |   U   |   D   |-----------------.
  * |         |   W   |-------+-------+-------+-------| |-------+-------+-------+-------|   J   |         |

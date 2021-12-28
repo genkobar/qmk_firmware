@@ -1,6 +1,6 @@
 # 4x6 Genkactyl
 
-![4x6_genkactyl](imgur.com image replace me!)
+![4x6_genkactyl](https://imgur.com/a/HcNQhn4)
 
 A compact variation of the Dactyl-Manuform, but still with enough keys for Scandinavian languages. 
 Thumb cluster designed by Carbonfet.
