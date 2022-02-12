@@ -1,4 +1,4 @@
-![4x6 Genkactyl Layout Image](https://i.imgur.com/7Capi8W.png)
+![4x6 Genkactyl Layout Image](https://imgur.com/DzHskvW)
 
 # Default 4x6 Genkactyl Layout
 
