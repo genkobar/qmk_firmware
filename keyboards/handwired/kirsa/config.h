@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define DIODE_DIRECTION COL2ROW
 
-#define RGB_DI_PIN D4
+#define RGB_DI_PIN C6
 #define RGBLED_NUM 69
 #define DRIVER_LED_TOTAL RGBLED_NUM
 #define RGBLED_SPLIT { 35, 34 }
