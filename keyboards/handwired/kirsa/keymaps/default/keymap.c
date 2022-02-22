@@ -84,9 +84,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_UPPER] = LAYOUT(
-    _______,_______,_______,_______,_______,_______,          _______,_______,_______,_______,_______,_______,\
-    _______,_______,KC_F1, KC_F2,  KC_F3,  KC_F4,             FF_L,    FF_R,    KC_NLCK,KC_INS, _______,KC_VOLU, \
-    _______,_______,KC_F5, KC_F6,  KC_F7,  KC_F8,             KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT,_______,KC_VOLD, \
+    RGB_TOG,_______,_______,_______,_______,_______,          _______,_______,_______,_______,_______,_______,\
+    RGB_MODE_PLAIN,_______,KC_F1, KC_F2,  KC_F3,  KC_F4,             FF_L,    FF_R,    KC_NLCK,KC_INS, _______,KC_VOLU, \
+    RGB_MODE_RAINBOW,_______,KC_F5, KC_F6,  KC_F7,  KC_F8,             KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT,_______,KC_VOLD, \
     COLEMAK,_______,KC_F9, KC_F10, KC_F11, KC_F12,            KC_MS_L, KC_MS_D, KC_MS_U,KC_MS_R,_______,KC_MUTE, \
                  _______, _______,          _______,        _______,            _______,_______,                 \
                             KC_BTN3,KC_BTN1,KC_BTN2,        KC_ACL0,KC_ACL1,KC_ACL2,                             \
