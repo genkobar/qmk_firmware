@@ -37,7 +37,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define DIODE_DIRECTION COL2ROW
 
-#define RGB_DI_PIN C6
+#define ENCODERS_PAD_A { D4 }
+#define ENCODERS_PAD_B { D2 }
+
+// #define RGB_DI_PIN C6
 
 #ifdef RGB_DI_PIN
     #define RGBLED_NUM 69
@@ -48,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_HUE_STEP 8
     #define RGBLIGHT_SAT_STEP 8
     #define RGBLIGHT_VAL_STEP 8
-    #define RGBLIGHT_LIMIT_VAL 150
+    #define RGBLIGHT_LIMIT_VAL 120
     /*== all animations enable ==*/
     #define RGBLIGHT_ANIMATIONS
     /*==== (DEFAULT) use fixed table instead of exp() and sin() ====*/
@@ -67,8 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
 
-/* Use I2C to communicate between the keyboard halves instead of serial */
-#define USE_I2C
+#define SOFT_SERIAL_PIN D3
 
 // #define PIMORONI_TRACKBALL_ROTATE // might or might not be needed, depends how you have mounted the trackball
 

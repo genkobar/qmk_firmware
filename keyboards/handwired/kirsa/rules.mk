@@ -10,7 +10,7 @@ BOOTLOADER = caterina
 BOOTMAGIC_ENABLE = no      # Enable Bootmagic Lite
 MOUSEKEY_ENABLE = yes       # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
-CONSOLE_ENABLE = no         # Console for debug
+CONSOLE_ENABLE = yes         # Console for debug
 COMMAND_ENABLE = yes         # Commands for debug and configuration
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
@@ -21,7 +21,7 @@ AUDIO_ENABLE = no           # Audio output
 SPLIT_KEYBOARD = yes
 
 # Enable generic underglow RGB LEDs
-RGBLIGHT_ENABLE = yes        # Enable keyboard RGB underglow
+RGBLIGHT_ENABLE = no       # Enable keyboard RGB underglow
 RGBLIGHT_DRIVER = WS2812
 
 # Per-key RGB LEDs
@@ -29,5 +29,5 @@ RGB_MATRIX_ENABLE = no
 # RGB_MATRIX_DRIVER = WS2812
 
 # Enable integrated mini trackball
-POINTING_DEVICE_ENABLE = yes
-POINTING_DEVICE_DRIVER = pimoroni_trackball
+# POINTING_DEVICE_ENABLE = yes
+# POINTING_DEVICE_DRIVER = pimoroni_trackball
