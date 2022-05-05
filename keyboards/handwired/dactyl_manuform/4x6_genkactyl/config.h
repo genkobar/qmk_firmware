@@ -35,3 +35,9 @@
 #define DIODE_DIRECTION COL2ROW
 
 #define MASTER_RIGHT
+
+#define ENCODERS_PAD_A {D2}
+#define ENCODERS_PAD_B {D4}
+
+#define ENCODER_RESOLUTIONS { 4, 4, 4, 1}
+#define UNUSED_PINS
